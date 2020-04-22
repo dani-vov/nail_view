@@ -12,6 +12,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class EventListener {
@@ -59,33 +60,15 @@ public class EventListener {
                 allStat.setReservationDate(reservationCanceled.getReservationDate());
                 allStat.setPhoneNumber(reservationCanceled.getPhoneNumber());
                 allStat.setReservationStatus("예약 취소");
-                allStatRepository.save(allStat);
 
-//                Optional<AllStat> optionalReservationStat = allStatRepository.findByReservationId(reservationCanceled.getId());
-//
-//                if(optionalReservationStat.isPresent()) {
-//                    AllStat allStat = optionalReservationStat.get();
-//                    allStat.setReservationId(reservationCanceled.getId());
-//                    allStat.setReservatorName(reservationCanceled.getReservatorName());
-//                    allStat.setReservationDate(reservationCanceled.getReservationDate());
-//                    allStat.setPhoneNumber(reservationCanceled.getPhoneNumber());
-//                    allStat.setReservationStatus("예약 취소");
-//                    allStatRepository.save(allStat);
-//                } else {
-//                    ReservationStat reservationStat = new ReservationStat();
-//                    reservationStat.setReservationId(reservationCanceled.getId());
-//                    reservationStat.setReservatorName(reservationCanceled.getReservatorName());
-//                    reservationStat.setReservationDate(reservationCanceled.getReservationDate());
-//                    reservationStat.setPhoneNumber(reservationCanceled.getPhoneNumber());
-//                    reservationStat.setReservationStatus("예약 취소");
-//                    reservationStatRepository.save(reservationStat);
-//                }
+                allStatRepository.save(allStat);
             }
 
             /**
              * 예약 변경 이벤트
              */
             else if( event.getEventType().equals(ReservationChanged.class.getSimpleName())) {
+
                 ReservationChanged reservationChanged = objectMapper.readValue(message, ReservationChanged.class);
 
                 AllStat allStat = new AllStat();
@@ -96,6 +79,7 @@ public class EventListener {
                 allStat.setReservationStatus("예약 변경");
 
                 allStatRepository.save(allStat);
+
             }
             /**
              * 네일 완료 이벤트
@@ -108,11 +92,12 @@ public class EventListener {
                 allStat.setEmployee(nailFinished.getEmployee());
                 allStat.setDescription(nailFinished.getDescription());
                 allStat.setFee(nailFinished.getFee());
-
+                allStat.setReservatorName(nailFinished.getReservatorName());
+                allStat.setPhoneNumber(nailFinished.getPhoneNumber());
+                allStat.setReservationDate(nailFinished.getReservationDate());
                 allStat.setReservationStatus("네일 완료");
 
                 allStatRepository.save(allStat);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
