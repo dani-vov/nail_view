@@ -1,9 +1,9 @@
-package NailShop.Event;
+package nailshop.Event;
 
-import NailShop.AbstractEvent;
-import NailShop.AllStat;
-import NailShop.AllStatRepository;
-import NailShop.config.kafka.KafkaProcessor;
+import nailshop.AbstractEvent;
+import nailshop.AllStat;
+import nailshop.AllStatRepository;
+import nailshop.config.kafka.KafkaProcessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @Service
 public class EventListener {

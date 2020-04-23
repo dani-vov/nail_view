@@ -1,6 +1,6 @@
-package NailShop.Event;
+package nailshop.Event;
 
-public class ReservationReserved {
+public class ReservationChanged {
 
     private Long reservationId;
 

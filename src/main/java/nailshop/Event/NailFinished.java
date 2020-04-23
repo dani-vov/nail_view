@@ -1,6 +1,6 @@
-package NailShop.Event;
+package nailshop.Event;
 
-import NailShop.AbstractEvent;
+import nailshop.AbstractEvent;
 
 public class NailFinished extends AbstractEvent {
 

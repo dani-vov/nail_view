@@ -1,6 +1,8 @@
-package NailShop.Event;
+package nailshop.Event;
 
-public class ReservationChanged {
+import nailshop.AbstractEvent;
+
+public class ReservationCanceled extends AbstractEvent {
 
     private Long reservationId;
 

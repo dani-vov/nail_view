@@ -1,4 +1,4 @@
-package NailShop;
+package nailshop;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
